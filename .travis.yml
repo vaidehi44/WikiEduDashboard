@@ -1,6 +1,10 @@
 language: ruby
 rvm: 2.7.1
 sudo: required
+os: linux
+virt: lxd
+group: edge
+arch: arm64-graviton2
 dist: focal
 cache:
   apt: true
