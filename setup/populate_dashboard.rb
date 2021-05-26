@@ -63,7 +63,7 @@ def populate_dashboard
     'https://dashboard.wikiedu.org/courses/Stanford_Law_School/Advanced_Legal_Research_Winter_2020_(Winter)'
   ]
   example_courses.each do |url|
-    default_campaign = Campaign.find_or_create_by!(title: 'Default Campaign', slug: ENV['default_campaign'])
+    default_campaign = Campaign.find_or_create_by!(title: 'Default Campaign', slug: Campaign.default_campaign_slug)
     course = make_copy_of(url)
     default_campaign.courses << course
     puts "getting data for #{course.slug}..."

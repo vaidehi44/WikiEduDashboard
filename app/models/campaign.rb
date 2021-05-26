@@ -112,8 +112,12 @@ class Campaign < ApplicationRecord
   # Class methods #
   #################
 
+  def self.default_campaign_slug
+    ENV['default_campaign']
+  end
+
   def self.default_campaign
-    find_by(slug: ENV['default_campaign']) || first
+    find_by(slug: default_campaign_slug) || first
   end
 
   ####################

@@ -6,7 +6,7 @@ class HomeController < ApplicationController
   layout 'home'
 
   def index
-    campaign = ENV['default_campaign']
+    campaign = Campaign.default_campaign_slug
     @presenter = CoursesPresenter.new(current_user: current_user, campaign_param: campaign)
   end
 end
