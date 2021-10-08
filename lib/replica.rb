@@ -119,6 +119,7 @@ class Replica
   #   "new_article"=>"false",
   #   "byte_change"=>"-50"
   #  }]
+  # rubocop:disable Metrics/CyclomaticComplexity
   def api_get(endpoint, query='')
     tries ||= 3
     response = do_query(endpoint, query)
@@ -131,9 +132,10 @@ class Replica
     tries -= 1
     sleep 2 && retry unless tries.zero?
     log_error(e, update_service: @update_service,
-              sentry_extra: { endpoint: endpoint, query: query,
+              sentry_extra: { endpoint: endpoint, query: query, response_body: response&.body,
                               language: @wiki.language, project: @wiki.project })
   end
+  # rubocop:enable Metrics/CyclomaticComplexity
 
   # rubocop:disable Metrics/CyclomaticComplexity
   # rubocop:disable Metrics/PerceivedComplexity
